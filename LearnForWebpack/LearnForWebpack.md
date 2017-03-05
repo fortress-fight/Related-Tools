@@ -23,6 +23,11 @@ webpack -- 一种强大的打包工具，但是官方文档极其混乱，一方
 
 注：如果向github 上提交代码，而跳过模块文件，需要配置 .gitignore 文件，在文件中输入
 
+   ```text
+    .DS_Store
+    node_modules/
+    npm-debug.log
+   ```
 
 #### 1.1.1 打包 js 文件
 
@@ -107,8 +112,8 @@ webpack -- 一种强大的打包工具，但是官方文档极其混乱，一方
   - path -- 输出文件的存放路径
   - filename -- 输出文件的文件名
   - publicPath -- 占位符，当需要上线的时候，这里将引用变成线上地址
-  如果输入文件是一个对象并包含多个key，就需要在filename中进行修改，如果只有一个bundle.js 那么后面的会覆盖掉前面的；这时可以通过占位符来进行多个文件的输出：[name],[hash],[chunk-hash]
-  >注：hash -- 相当于版本号，chunk-hash 只会在文件修改的时候，才会修改的hash
+  如果输入文件是一个对象并包含多个key，就需要在filename中进行修改，如果只有一个bundle.js 那么后面的会覆盖掉前面的；这时可以通过占位符来进行多个文件的输出：[name],[hash],[chunkhash]
+  >注：hash -- 相当于版本号，chunkhash 只会在文件修改的时候，才会修改的hash
 
   实例：
 
@@ -141,7 +146,7 @@ webpack -- 一种强大的打包工具，但是官方文档极其混乱，一方
   ```
   可以通过`npm run webpack`执行命令
 
-#### plugin
+#### plugins
 
   如果使用了hash作为文件名，那么输出的文件如何引入就成为了问题，这时可用使用 `html-webpack-plugin`来实现；这个模块引入了模板，通过对模板的编辑来决定输出；
 
