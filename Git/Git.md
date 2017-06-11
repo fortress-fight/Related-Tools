@@ -78,3 +78,9 @@ fatal: CRLF would be replaced by LF
 git config --global core.autocrlf true #这个是转换，也是默认值  
 git config --global core.autocrlf input #貌似是上库转换，从库中迁出代码不转换  
 git config --global core.autocrlf false  #这个一般是window上的，不转换  
+
+# git 中文路径显示为数字的处理方式：
+
+设置全局配置
+    quotepath -- 引用路径；
+    `git config --global core.quotepath false`

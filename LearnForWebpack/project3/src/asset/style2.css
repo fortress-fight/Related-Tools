@@ -1,7 +1,0 @@
-#box:before {
-    content: "这里插入到div前面，是通过@import 引入的文件";
-}
-
-span {
-    display: flex;
-}

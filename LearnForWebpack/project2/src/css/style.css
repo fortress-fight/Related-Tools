@@ -1,9 +1,0 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: #58a;
-}
-
-div:after {
-    content: "打包的css文件"
-}
