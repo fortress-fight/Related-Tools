@@ -1,4 +1,6 @@
-const { resolve } = require('path');
+const {
+    resolve
+} = require('path');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
@@ -27,14 +29,22 @@ module.exports = {
                 minifyCSS: true
             }
         }),
-        new extractTextPlugin (resolve(__dirname, 'dist/css/style.css'))
     ],
     module: {
         rules: [{
-            test: /\.css$/,
-            use: extractTextPlugin.extract({
-                use: 'css-loader'
-            })
+            test: /\.css$|\.scss$|\.sass$/,
+            use: [{
+                loader: "style-loader" // 将 JS 字符串生成为 style 节点
+            }, {
+                loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
+            }, {
+                loader: "sass-loader", // 将 Sass 编译成 CSS
+                options: {
+                    outputStyle: 'compressed',
+                    sourceMap: true
+                }
+            }],
+            exclude: resolve(__dirname, './node_modules'),
         }]
     }
 }

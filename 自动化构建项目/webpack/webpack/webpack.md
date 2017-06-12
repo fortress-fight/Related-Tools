@@ -513,6 +513,37 @@ module 使用 loader
         2. 修改配置
 
                 ```js
+                const { resolve } = require('path');
+                const extractTextPlugin = require('extract-text-webpack-plugin');
+                const htmlWebpackPlugin = require('html-webpack-plugin');
+                const webpack = require('webpack');
+
+                module.exports = {
+                    context: '',
+                    entry: './src/app.js',
+                    output: {
+                        path: resolve(__dirname, 'dist'),
+                        filename: './js/bundle.js'
+                    },
+                    plugins: [
+                        new htmlWebpackPlugin({
+                            title: 'my project',
+                            filename: resolve(__dirname, 'dist/index.html'),
+                            template: 'index.html',
+                            inject: 'body',
+                            minify: {
+                                collapseWhitespace: true,
+                                collapseBooleanAttributes: true,
+                                removeComments: true,
+                                removeEmptyAttributes: true,
+                                removeScriptTypeAttributes: true,
+                                removeStyleLinkTypeAttributes: true,
+                                minifyJS: true,
+                                minifyCSS: true
+                            }
+                        }),
+                        new extractTextPlugin (resolve(__dirname, 'dist/css/style.css'))
+                    ],
                     module: {
                         rules: [{
                             test: /\.css$/,
@@ -520,10 +551,8 @@ module 使用 loader
                                 use: 'css-loader'
                             })
                         }]
-                    },
-                    plugin: [
-                        new extractTextPlugin (resolve(__dirname, 'dist/css/style.css'))
-                    ]
+                    }
+                }
                 ```
             ![](./shortCut/2017-06-12-08-50-58.png)
 
@@ -534,3 +563,26 @@ module 使用 loader
 7. css - 预处理插件
     这里以 scss 为例
     
+    - 安装 `npm install -- save-dev sass-loader node-sass`
+    node-sass  是 sass-loader 的 peerDependency，因此能够精确控制它们的版本。
+
+    - 配置 webpack.config.js
+    
+        ```js
+            module: {
+                rules: [{
+                    test: /\.css$|\.scss$|\.sass$/,
+                    use: [{
+                        loader: "style-loader" // 将 JS 字符串生成为 style 节点
+                    }, {
+                        loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
+                    }, {
+                        loader: "sass-loader" // 将 Sass 编译成 CSS
+                    }],
+                    exclude: resolve(__dirname, './node_modules'),
+                }]
+            }
+        ```
+    我们还可以使用 sass 的相关[配置参数](https://github.com/sass/node-sass)：
+    
+    - 如果需要将 css 出去出来作为一个单独的文件，还要使用 extract-text-webpack-plugin
