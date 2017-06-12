@@ -416,3 +416,93 @@ webpack 是一个模块管理的工具，主要功能是处理模块之间的相
             ```
 
 ### 实践 -- project3
+
+module 使用 loader
+
+ webpack 中的loader 就相当于预先在文件中定义了一些执行命令，当遇到某些文件的时候，对其进行相应的一个操作  
+ 使用 project3 来演示
+
+1. 搭建项目目录
+
+    - dist -- 存放编译后的文件
+    - src -- 存放编译前的文件
+        - components -- 存放项目模块
+        - css
+        - js
+        - app.js -- 入口文件
+    - index.html -- 模板文件
+    - webpack.config.js -- 配置文件
+
+2. 建立项目 `npm init`
+
+3. 安装常用插件
+    `cnpm install --save-dev webpack html-webpack-plugin css-loader style-loader`
+
+4. 配置 webpack.config.js
+
+        ```js
+            const { resolve } = require('path');
+            const htmlWebpackPlugin = require('html-webpack-plugin');
+            const webpack = require('webpack');
+            module.exports = {
+                context: '',
+                entry: './src/app.js',
+                output: {
+                    path: resolve(__dirname, './dist'),
+                    filename: './js/bundle.js'
+                },
+                plugins: [
+                    new htmlWebpackPlugin ({
+                        title: 'my project',
+                        filename: './dist/index.html',
+                        template: 'index.html',
+                        minify: {
+                            title: 'my project',
+                            filename: path.resolve(__dirname, 'dist/index.html'),
+                            template: 'index.html',
+                            inject: 'body',
+                            minify: {
+                                collapseWhitespace: true,
+                                collapseBooleanAttributes: true,
+                                removeComments: true,
+                                removeEmptyAttributes: true,
+                                removeScriptTypeAttributes: true,
+                                removeStyleLinkTypeAttributes: true,
+                                minifyJS: true,
+                                minifyCSS: true
+                            }
+                        }
+                    })
+                ],
+            }
+        ```
+
+5. babel-loader
+
+    - 安装
+        `npm install --save-dev babel-loader babel-core babel-preset-env webpack`
+    - 
+
+6. 代码分离 -- css
+    为了用 webpack 对 CSS 文件进行打包，你可以像其它模块一样将 CSS 引入到你的 JavaScript 代码中，同时用 css-loader (像 JS 模块一样输出 CSS)，也可以选择使用 ExtractTextWebpackPlugin (将打好包的 CSS 提出出来并输出成 CSS 文件)。
+    
+    - 配置 module 项
+    
+            ```js
+            module.exports = {
+                ...
+                module: {
+                    rules: [{
+                        test: /\.css$/,
+                        use: ['style-loader', 'css-loader']
+                    }]
+                }
+            }
+            ```
+    这样，CSS 会跟你的 JavaScript 打包在一起，并且在初始加载后，通过一个 `<style>` 标签注入样式，然后作用于页面。  
+
+    这里有一个缺点就是，你无法使用浏览器的能力，去异步且并行去加载 CSS。取而代之的是，你的页面需要等待整个 JavaScript 文件加载完，才能进行样式渲染。
+
+    webpack 能够用 ExtractTextWebpackPlugin 帮助你将 CSS 单独打包，以解决以上问题。
+
+    - 使用 ExtractTextWebpackPlugin
