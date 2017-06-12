@@ -1,6 +1,5 @@
-const {
-    resolve
-} = require('path');
+const { resolve } = require('path');
+const extractTextPlugin = require('extract-text-webpack-plugin');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
@@ -27,12 +26,15 @@ module.exports = {
                 minifyJS: true,
                 minifyCSS: true
             }
-        })
+        }),
+        new extractTextPlugin (resolve(__dirname, 'dist/css/style.css'))
     ],
     module: {
         rules: [{
             test: /\.css$/,
-            use: ['style-loader', 'css-loader']
+            use: extractTextPlugin.extract({
+                use: 'css-loader'
+            })
         }]
     }
 }

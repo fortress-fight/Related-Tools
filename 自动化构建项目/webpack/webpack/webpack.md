@@ -485,7 +485,10 @@ module 使用 loader
 
 6. 代码分离 -- css
     为了用 webpack 对 CSS 文件进行打包，你可以像其它模块一样将 CSS 引入到你的 JavaScript 代码中，同时用 css-loader (像 JS 模块一样输出 CSS)，也可以选择使用 ExtractTextWebpackPlugin (将打好包的 CSS 提出出来并输出成 CSS 文件)。
-    
+
+    - 在js文件中引入 css 文件
+        `import './style.css`
+
     - 配置 module 项
     
             ```js
@@ -506,3 +509,28 @@ module 使用 loader
     webpack 能够用 ExtractTextWebpackPlugin 帮助你将 CSS 单独打包，以解决以上问题。
 
     - 使用 ExtractTextWebpackPlugin
+        1. 在 `webpack.config.js` 中添加 `const extractTextPlugin = require('extract-text-webpack-plugin')`
+        2. 修改配置
+
+                ```js
+                    module: {
+                        rules: [{
+                            test: /\.css$/,
+                            use: extractTextPlugin.extract({
+                                use: 'css-loader'
+                            })
+                        }]
+                    },
+                    plugin: [
+                        new extractTextPlugin (resolve(__dirname, 'dist/css/style.css'))
+                    ]
+                ```
+            ![](./shortCut/2017-06-12-08-50-58.png)
+
+        通过以上两步，你可以将所有的 CSS 模块生成一个新的文件，同时你可以将它作为一个单独标签添加到 index.html中。
+    
+    - 可以在插入的css文件中通过 @import 引入了别的css文件
+
+7. css - 预处理插件
+    这里以 scss 为例
+    
