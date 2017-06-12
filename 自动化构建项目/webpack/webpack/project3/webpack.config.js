@@ -38,6 +38,17 @@ module.exports = {
             }, {
                 loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
             }, {
+                loader: "postcss-loader",
+                options: {
+                    plugins: function (){
+                        return [
+                            require('autoprefixer')({
+                                broswers: ['last 5 version']
+                            })
+                        ]
+                    }
+                }
+            },{
                 loader: "sass-loader", // 将 Sass 编译成 CSS
                 options: {
                     outputStyle: 'compressed',

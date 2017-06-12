@@ -586,3 +586,94 @@ module 使用 loader
     我们还可以使用 sass 的相关[配置参数](https://github.com/sass/node-sass)：
     
     - 如果需要将 css 出去出来作为一个单独的文件，还要使用 extract-text-webpack-plugin
+
+        这里已使用 extract-text-webpack-plugin 进行编译的时候就卡住了，所以先放一放  
+        配置文件如下
+
+            ```js
+                const {
+                    resolve
+                } = require('path');
+                const ExtractTextPlugin = require('extract-text-webpack-plugin');
+                const htmlWebpackPlugin = require('html-webpack-plugin');
+                const webpack = require('webpack');
+                const extractCss = new ExtractTextPlugin(resolve(__dirname, 'dist/css/style.css'));
+
+                module.exports = {
+                    context: '',
+                    entry: './src/app.js',
+                    output: {
+                        path: resolve(__dirname, 'dist'),
+                        filename: './js/bundle.js'
+                    },
+                    plugins: [
+                        new htmlWebpackPlugin({
+                            title: 'my project',
+                            filename: resolve(__dirname, 'dist/index.html'),
+                            template: 'index.html',
+                            inject: 'body',
+                            minify: {
+                                collapseWhitespace: true,
+                                collapseBooleanAttributes: true,
+                                removeComments: true,
+                                removeEmptyAttributes: true,
+                                removeScriptTypeAttributes: true,
+                                removeStyleLinkTypeAttributes: true,
+                                minifyJS: true,
+                                minifyCSS: true
+                            }
+                        }),
+                        extractCss
+                    ],
+                    module: {
+                        rules: [{
+                            test: /\.css$|\.scss$|\.sass$/,
+                            use: ExtractTextPlugin.extract({
+                                fallback: 'style-loader',
+                                //resolve-url-loader may be chained before sass-loader if necessary
+                                use: ['css-loader', 'sass-loader']
+                            })
+                        }]
+                    }
+                }
+            ```
+
+8. css 后处理 -- postcss-loader
+
+    - 安装 `npm install post-loader --save-dev`
+    - post-loader 可以和很多插件配合，例如：'autoprefixer'
+    - 安装 `npm install autoprefixer --save-dev`
+    - 配置 webpack.config.js
+    
+            ```js
+                use: [{
+                        loader: "style-loader" // 将 JS 字符串生成为 style 节点
+                    }, {
+                        loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
+                    }, {
+                        loader: "postcss-loader",
+                        options: {
+                            plugins: function (){
+                                return [
+                                    require('autoprefixer')({
+                                        broswers: ['last 5 version']
+                                    })
+                                ]
+                            }
+                        }
+                    },{
+                        loader: "sass-loader", // 将 Sass 编译成 CSS
+                        options: {
+                            outputStyle: 'compressed',
+                            sourceMap: true
+                        }
+                    }],
+            ```
+            
+9. html 模板加载
+    模块化开发，就需要在文件中引入相应的模块文件；并且找到对应的解析方法；  
+    可以通过webpack官网查看其对应的loader
+    [template](http://webpack.github.io/docs/list-of-loaders.html);
+
+    - 安装 `npm install html-loader`
+    - 配置

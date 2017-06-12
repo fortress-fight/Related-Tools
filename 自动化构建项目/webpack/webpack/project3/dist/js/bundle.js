@@ -528,8 +528,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-2!./style.css", function() {
-			var newContent = require("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-2!./style.css");
+		module.hot.accept("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--0-2!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-3!./style.css", function() {
+			var newContent = require("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--0-2!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-3!./style.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -559,8 +559,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-2!./style.scss", function() {
-			var newContent = require("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-2!./style.scss");
+		module.hot.accept("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--0-2!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-3!./style.scss", function() {
+			var newContent = require("!!../../node_modules/_css-loader@0.28.4@css-loader/index.js!../../node_modules/_postcss-loader@2.0.5@postcss-loader/lib/index.js??ref--0-2!../../node_modules/_sass-loader@6.0.5@sass-loader/lib/loader.js??ref--0-3!./style.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -578,7 +578,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 exports.i(__webpack_require__(6), "");
 
 // module
-exports.push([module.i, "div{width:100px;height:100px;background:#333;box-shadow:0 0 10px #000}\n", ""]);
+exports.push([module.i, "div{width:100px;height:100px;background:#333;-webkit-box-shadow:0 0 10px #000;box-shadow:0 0 10px #000}\n", ""]);
 
 // exports
 
@@ -592,7 +592,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body div{width:100px;height:300px;background:#333;box-shadow:0 0 10px #000}body div:before{content:\"sass\"}\n", ""]);
+exports.push([module.i, "body div{width:100px;height:300px;background:#333;-webkit-box-shadow:0 0 10px #000;box-shadow:0 0 10px #000}body div:before{content:\"sass\"}\n", ""]);
 
 // exports
 
