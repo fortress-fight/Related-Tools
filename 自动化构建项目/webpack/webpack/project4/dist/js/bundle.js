@@ -530,7 +530,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, ".headerTool{width:300px;height:100px;background:#333}\n", ""]);
+exports.push([module.i, ".headerTool {\n  width: 300px;\n  height: 100px;\n  background: #333; }\n", ""]);
 
 // exports
 
@@ -544,7 +544,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "header{padding:10px;background:#58a}\n", ""]);
+exports.push([module.i, "header {\n  padding: 10px;\n  background: #58a; }\n", ""]);
 
 // exports
 
@@ -559,7 +559,7 @@ module.exports = "import './css/style.css';\r\n\r\n<div class=\"headerTool\"></d
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <h3>header</h3>\r\n    ${require('./../headerTool/index.html')}\r\n</div>";
+module.exports = "<style>\r\n    div {\r\n        box-shadow: 0 0 10px #fff;\r\n    }\r\n</style>\r\n<div>\r\n    <h3>header</h3>\r\n    ${require('./../headerTool/index.html')}\r\n</div>";
 
 /***/ }),
 /* 7 */
