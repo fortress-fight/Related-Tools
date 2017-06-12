@@ -32,30 +32,39 @@ module.exports = {
     ],
     module: {
         rules: [{
-            test: /\.css$|\.scss$|\.sass$/,
-            use: [{
-                loader: "style-loader" // 将 JS 字符串生成为 style 节点
-            }, {
-                loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
-            }, {
-                loader: "postcss-loader",
-                options: {
-                    plugins: function (){
-                        return [
-                            require('autoprefixer')({
-                                broswers: ['last 5 version']
-                            })
-                        ]
+                test: /\.css$|\.scss$|\.sass$/,
+                use: [{
+                    loader: "style-loader" // 将 JS 字符串生成为 style 节点
+                }, {
+                    loader: "css-loader" // 将 CSS 转化成 CommonJS 模块
+                }, {
+                    loader: "postcss-loader",
+                    options: {
+                        plugins: function () {
+                            return [
+                                require('autoprefixer')({
+                                    broswers: ['last 5 version']
+                                })
+                            ]
+                        }
                     }
-                }
-            },{
-                loader: "sass-loader", // 将 Sass 编译成 CSS
-                options: {
-                    outputStyle: 'compressed',
-                    sourceMap: true
-                }
-            }],
-            exclude: resolve(__dirname, './node_modules'),
-        }]
+                }, {
+                    loader: "sass-loader", // 将 Sass 编译成 CSS
+                    options: {
+                        outputStyle: 'compressed',
+                        sourceMap: true
+                    }
+                }],
+                exclude: resolve(__dirname, './node_modules'),
+            }, {
+                test: /\.html$/,
+                use: [{
+                    loader: 'html-loader'
+                }]
+            }, {
+                test: /\.(jpg|png)$/,
+                use: ["file-loader"]
+            }
+        ]
     }
 }

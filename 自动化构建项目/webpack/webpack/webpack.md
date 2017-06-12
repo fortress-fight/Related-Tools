@@ -674,6 +674,52 @@ module 使用 loader
     模块化开发，就需要在文件中引入相应的模块文件；并且找到对应的解析方法；  
     可以通过webpack官网查看其对应的loader
     [template](http://webpack.github.io/docs/list-of-loaders.html);
-
+    
     - 安装 `npm install html-loader`
-    - 配置
+    - 配置 webpack.config.js
+        
+        ```js
+            {
+                test: /\.html$/,
+                use: [{
+                    loader: 'html-loader'
+                }]
+            }
+        ```
+    - 添加模块文件
+
+        - src
+            - component
+                - header.html
+    
+    - 在入口文件中引入
+
+        - app.js + `import header from './components/header.html'`
+
+    - webpack 打包
+        模板中的文件就会加载到 header 变量中然后通过 js 加载到页面上；
+
+10. file-loader & url-loader
+    编译后的图片或者文件会存在路径问题，需要额外的工具 -- file-loader
+    url-loader 当你的文件或者图片，大于限制的大小的时候就会交给 file-loader，否则转换成为 base64 位的编码
+
+    - 安装 `cnpm install file-loader --save-dev`
+    - 配置文件
+
+        ```js
+            {
+                test: /\.(jpg|png)$/,
+                use: ["file-loader"]
+            },
+            {
+                test: /\.(jpg|png|gif|sev)$/,
+                exclude: path.resolve(__dirname, 'node\_modules'),
+                loaders: [
+                    'url-loader?limit=500&name=assets/img-[hash:5].[ext]'
+                ]
+            }
+        ```
+    - 常用参数：limit 表示限制条件；name 表示路径  
+        当你的文件或者图片，大于限制的大小的时候就会交给 file-loader，否则转换成为 base64 位的编码
+        注：使用图片会有缓存，而使用base64 每一使用都是新的
+    
