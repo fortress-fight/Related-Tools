@@ -70,7 +70,9 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-
+function sayHi (){
+    alert('hi')
+}
 
 /***/ })
 /******/ ]);

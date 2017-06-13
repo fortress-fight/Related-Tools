@@ -16,7 +16,7 @@ module.exports = {
         new htmlWebpackPlugin({
             title: 'my project',
             filename: resolve(__dirname, 'dist/index.html'),
-            template: 'index.html',
+            template: 'html-loader!./index.html',
             inject: 'body',
             minify: {
                 collapseWhitespace: true,
@@ -40,6 +40,7 @@ module.exports = {
                 }, {
                     loader: "postcss-loader",
                     options: {
+                        sourceMap: true,
                         plugins: function () {
                             return [
                                 require('autoprefixer')({
@@ -56,11 +57,6 @@ module.exports = {
                     }
                 }],
                 exclude: resolve(__dirname, './node_modules'),
-            }, {
-                test: /\.html$/,
-                use: [{
-                    loader: 'html-loader'
-                }]
             }, {
                 test: /\.(jpg|png)$/,
                 use: ["file-loader"]
