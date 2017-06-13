@@ -8,6 +8,7 @@
     "gulp-minify-html": "^1.0.6",
     "gulp-rev": "^7.1.2",
     "gulp-rev-collector": "^1.2.2",
+    "gulp-smarty": "^1.0.0",
     "gulp-smarty4js-render": "^0.1.6",
     "gulp-tpl": "^0.4.0"
   },

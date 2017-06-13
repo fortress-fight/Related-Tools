@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    {include file="./src/components/headerTool/index.tpl" assign=name var1=value}
+    {include file="./src/components/headerTool/index.tpl"}
 </body>
 </html>
