@@ -1,0 +1,8 @@
+body {
+    background: #666;
+}div {
+    width: 100px;
+    height: 100px;
+    background: #333;
+    box-shadow: 0 0 10px #000;
+}

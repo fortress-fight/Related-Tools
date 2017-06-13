@@ -16,7 +16,7 @@ module.exports = {
         new htmlWebpackPlugin({
             title: 'my project',
             filename: resolve(__dirname, 'dist/index.html'),
-            template: 'index.html',
+            template: 'html-loader!./index.html',
             inject: 'body',
             minify: {
                 // collapseWhitespace: true,
