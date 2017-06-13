@@ -1,3 +1,3 @@
-import './css/style.css';
+
 
 <div class="headerTool"></div>

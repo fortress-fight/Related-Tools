@@ -1,8 +1,23 @@
 {
   "devDependencies": {
+    "del": "^3.0.0",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-file-include": "^1.1.0",
+    "gulp-md5-plus": "^1.0.3",
     "gulp-minify-html": "^1.0.6",
     "gulp-rev": "^7.1.2",
-    "gulp-rev-collector": "^1.2.2"
-  }
+    "gulp-rev-collector": "^1.2.2",
+    "gulp-smarty4js-render": "^0.1.6",
+    "gulp-tpl": "^0.4.0"
+  },
+  "name": "gulp-project1",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

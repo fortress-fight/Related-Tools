@@ -21,3 +21,8 @@
     - gulpfile.js
     - index.html
 4. 工具
+
+    - gulp-rev  
+        在文件尾部生成 MD5 后缀，然后将信息输出到 `*.json` 文件中；
+    - gulp-rev-collector  
+        将文件
