@@ -1,3 +1,4 @@
 
 
-<div class="headerTool"></div>
+<div class="headerTool">@@name</div>
+<div class="headerTool">@@age</div>

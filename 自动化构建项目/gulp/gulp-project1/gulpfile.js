@@ -68,50 +68,10 @@ gulp.task('clean', function () {
 //         .pipe(gulp.dest('./dist/tpl'))
 // })
 
-// var fileinclude = require('gulp-file-include'),
-//   gulp = require('gulp');
+var fileinclude = require('gulp-file-include');
 
-// gulp.task('fileinclude', function() {
-//   gulp.src(['index.html'])
-//     .pipe(fileinclude())
-//     .pipe(gulp.dest('dist'));
-// });
-
-// var gulp       = require('gulp'),
-//     render     = require('gulp-smarty4js-render');
-
-// gulp.task('html', function () {
-//     gulp.src('./*.tpl')
-//     .pipe(gulp.dest('dist/'))
-// });
-
-const smarty = require('gulp-smarty');
-const opt = {
-    "data": {
-
-    },
-    "smarty_opt": {
-        "left_delimiter": "{",
-        "right_delimiter": "}"
-    }
-};
-
-gulp.task('default', function () {
-    gulp.src(['./index.tpl', './src/components/headerTool/index.tpl'])
-        // opt will be explicated below 
-        .pipe(smarty({
-            "data": {
-                "index": { // be same with the template name from gulp.src(); 
-                    // [object] the json data to render the template 
-                    "src_data": {
-                        "name": "ff"
-                    }
-                }
-            },
-            "smarty_opt": {
-                "left_delimiter": "{",
-                "right_delimiter": "}"
-            }
-        }))
-        .pipe(gulp.dest('dist'))
+gulp.task('html', function() {
+  gulp.src(['index.tpl'])
+    .pipe(fileinclude())
+    .pipe(gulp.dest('dist'));
 });

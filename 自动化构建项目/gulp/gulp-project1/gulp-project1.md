@@ -25,4 +25,5 @@
     - gulp-rev  
         在文件尾部生成 MD5 后缀，然后将信息输出到 `*.json` 文件中；
     - gulp-rev-collector  
-        将文件
+        将修改后的文件根据生成的 `*.json` 关联到 html 中
+    - gulp-file-include
