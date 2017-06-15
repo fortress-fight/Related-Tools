@@ -25,28 +25,28 @@ gulp.task('compress', function (cb) {
 })
 var ftp = require('vinyl-ftp');
 
-// gulp.task('default', function () {
-//     var conn = ftp.create({
-//         host: '114.55.42.195',
-//         user: 'fufei2017',
-//         pass: '4Ap4Fdgs63gf#dsfo',
-//         port: 288,
-//         parallel: 1
-//     });
+gulp.task('default', function () {
+    var conn = ftp.create({
+        host: '114.55.42.195',
+        user: 'fufei2017',
+        pass: '4Ap4Fdgs63gf#dsfo',
+        port: 288,
+        parallel: 1
+    });
 
-//     // using base = '.' will transfer everything to /public_html correctly 
-//     // turn off buffering in gulp.src for best performance 
+    // using base = '.' will transfer everything to /public_html correctly 
+    // turn off buffering in gulp.src for best performance 
 
-//     gulp.src('./js/gulp.js')
-//         .pipe(rename('gulp.min.js')) // 需要在 sourcempas 前
-//         .pipe(sourcemaps.init({
-//             loadMaps: true
-//         }))
-//         .pipe(uglify())
-//         .pipe(sourcemaps.write('./'))
-//         .pipe(gulp.dest('./dist/js'))        
-//         .pipe(conn.dest('/'));
-// })
+    gulp.src('./js/gulp.js')
+        .pipe(rename('gulp.min.js')) // 需要在 sourcempas 前
+        .pipe(sourcemaps.init({
+            loadMaps: true
+        }))
+        .pipe(uglify())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest('./dist/js'))        
+        .pipe(conn.dest('/'));
+})
 
 
 // 'use strict';
