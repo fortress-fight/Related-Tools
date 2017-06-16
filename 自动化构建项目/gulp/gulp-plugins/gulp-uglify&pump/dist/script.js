@@ -1,0 +1,1 @@
+function sayHi(){console.log("my name is gulp-uglify"),name="ff"}var name="gulp test";
